@@ -96,6 +96,7 @@
 			this.radioButtonWinforms.TabStop = true;
 			this.radioButtonWinforms.Text = "Windows Forms";
 			this.radioButtonWinforms.UseVisualStyleBackColor = true;
+			this.radioButtonWinforms.Visible = false;
 			// 
 			// radioButtonWPF
 			// 
@@ -107,6 +108,7 @@
 			this.radioButtonWPF.TabStop = true;
 			this.radioButtonWPF.Text = "WPF";
 			this.radioButtonWPF.UseVisualStyleBackColor = true;
+			this.radioButtonWPF.Visible = false;
 			// 
 			// radioButtonConsole
 			// 
@@ -118,6 +120,7 @@
 			this.radioButtonConsole.TabStop = true;
 			this.radioButtonConsole.Text = "Console";
 			this.radioButtonConsole.UseVisualStyleBackColor = true;
+			this.radioButtonConsole.Visible = false;
 			// 
 			// buttonAccept
 			// 
