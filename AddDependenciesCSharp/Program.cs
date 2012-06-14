@@ -15,7 +15,7 @@ namespace AddDependenciesCSharp
 		{
 			Application.EnableVisualStyles();
 			Application.SetCompatibleTextRenderingDefault(false);
-			SharedClasses.AutoUpdatingForm.CheckForUpdates();
+			SharedClasses.AutoUpdatingForm.CheckForUpdates(delegate { Application.Exit(); });
 			Application.Run(new MainForm());
 		}
 	}
