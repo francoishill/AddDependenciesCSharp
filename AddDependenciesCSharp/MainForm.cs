@@ -47,7 +47,7 @@ namespace AddDependenciesCSharp
 			{
 				textBoxProjectPath.Text = FileList[0];
 				if (textBoxProjectPath.Text.StartsWith(@"C:\Francois\Dev\VSprojects"))
-					textBoxProjectPath.Text = textBoxProjectPath.Text.Replace(@"C:\Francois\Dev\VSprojects", @"C:\Users\francois\Documents\Visual Studio 2010\Projects");
+					textBoxProjectPath.Text = textBoxProjectPath.Text.Replace(@"C:\Francois\Dev\VSprojects", Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments).TrimEnd('\\') + "\\" + @"Visual Studio 2010\Projects");
 			}
 		}
 
