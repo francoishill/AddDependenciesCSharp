@@ -46,6 +46,8 @@ namespace AddDependenciesCSharp
 			else
 			{
 				textBoxProjectPath.Text = FileList[0];
+				if (textBoxProjectPath.Text.StartsWith(@"C:\Francois\Dev\VSprojects"))
+					textBoxProjectPath.Text = textBoxProjectPath.Text.Replace(@"C:\Francois\Dev\VSprojects", @"C:\Users\francois\Documents\Visual Studio 2010\Projects");
 			}
 		}
 
@@ -107,7 +109,7 @@ namespace AddDependenciesCSharp
 				List<FullPathAndDisplayName> tmplist = new List<FullPathAndDisplayName>();
 				foreach (TreeNode node in treeViewItemsToAdd.Nodes)
 					tmplist.Add(node.Tag as FullPathAndDisplayName);
-				CSharpDependencies.EnsureCorrectFileDependancies(textBoxProjectPath.Text, tmplist.ToArray());
+				CSharpDependencies.EnsureCorrectFileDependancies(textBoxProjectPath.Text, tmplist.ToArray(), true);
 			}
 		}
 	}
