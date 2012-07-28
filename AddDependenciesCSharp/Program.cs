@@ -15,8 +15,15 @@ namespace AddDependenciesCSharp
 		{
 			Application.EnableVisualStyles();
 			Application.SetCompatibleTextRenderingDefault(false);
-			SharedClasses.AutoUpdatingForm.CheckForUpdates(delegate { Application.Exit(); });
-			Application.Run(new MainForm());
+
+			MainForm mainform = new MainForm();
+
+			SharedClasses.AutoUpdatingForm.CheckForUpdates(
+				delegate { Application.Exit(); },
+				ActionIfUptoDate_Versionstring: (uptodateversion) => ThreadingInterop.UpdateGuiFromThread(mainform, () => mainform.Text += " (up to date version " + uptodateversion + ")"),
+				ActionIfUnableToCheckForUpdates: (errmsg) => ThreadingInterop.UpdateGuiFromThread(mainform, () => mainform.Text += " (" + errmsg + ")"));
+
+			Application.Run(mainform);
 		}
 	}
 }
