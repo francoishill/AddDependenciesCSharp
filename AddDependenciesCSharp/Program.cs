@@ -18,10 +18,11 @@ namespace AddDependenciesCSharp
 
 			MainForm mainform = new MainForm();
 
-			SharedClasses.AutoUpdatingForm.CheckForUpdates(
-				delegate { Application.Exit(); },
-				ActionIfUptoDate_Versionstring: (uptodateversion) => ThreadingInterop.UpdateGuiFromThread(mainform, () => mainform.Text += " (up to date version " + uptodateversion + ")"),
-				ActionIfUnableToCheckForUpdates: (errmsg) => ThreadingInterop.UpdateGuiFromThread(mainform, () => mainform.Text += " (" + errmsg + ")"));
+			SharedClasses.AutoUpdating.CheckForUpdates(
+			//SharedClasses.AutoUpdatingForm.CheckForUpdates(
+				//delegate { Application.Exit(); },
+				ActionIfUptoDate_Versionstring: (uptodateversion) => ThreadingInterop.UpdateGuiFromThread(mainform, () => mainform.Text += " (up to date version " + uptodateversion + ")"));//,
+				//ActionIfUnableToCheckForUpdates: (errmsg) => ThreadingInterop.UpdateGuiFromThread(mainform, () => mainform.Text += " (" + errmsg + ")"));
 
 			Application.Run(mainform);
 		}
