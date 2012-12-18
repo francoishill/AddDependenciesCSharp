@@ -17,12 +17,16 @@ namespace AddDependenciesCSharp
 			Application.SetCompatibleTextRenderingDefault(false);
 
 			MainForm mainform = new MainForm();
-
-			SharedClasses.AutoUpdating.CheckForUpdates(
+			SharedClasses.AutoUpdating.CheckForUpdates_ExceptionHandler(
+				delegate
+				{
+					ThreadingInterop.UpdateGuiFromThread(mainform, () => mainform.Text += " (up to date version " + SharedClasses.AutoUpdating.GetThisAppVersionString() + ")");
+				});
+			/*SharedClasses.AutoUpdating.CheckForUpdates(
 			//SharedClasses.AutoUpdatingForm.CheckForUpdates(
 				//delegate { Application.Exit(); },
 				ActionIfUptoDate_Versionstring: (uptodateversion) => ThreadingInterop.UpdateGuiFromThread(mainform, () => mainform.Text += " (up to date version " + uptodateversion + ")"));//,
-				//ActionIfUnableToCheckForUpdates: (errmsg) => ThreadingInterop.UpdateGuiFromThread(mainform, () => mainform.Text += " (" + errmsg + ")"));
+				//ActionIfUnableToCheckForUpdates: (errmsg) => ThreadingInterop.UpdateGuiFromThread(mainform, () => mainform.Text += " (" + errmsg + ")"));*/
 
 			Application.Run(mainform);
 		}
