@@ -28,7 +28,8 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
-			this.textBoxProjectPath = new System.Windows.Forms.TextBox();
+			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
+			this.comboboxProjectPath = new System.Windows.Forms.ComboBox();
 			this.buttonBrowseProject = new System.Windows.Forms.Button();
 			this.treeViewItemsToAdd = new System.Windows.Forms.TreeView();
 			this.comboBoxSharedClasses = new System.Windows.Forms.ComboBox();
@@ -36,19 +37,20 @@
 			this.radioButtonWPF = new System.Windows.Forms.RadioButton();
 			this.radioButtonConsole = new System.Windows.Forms.RadioButton();
 			this.buttonAccept = new System.Windows.Forms.Button();
+			this.labelAbout = new System.Windows.Forms.Label();
 			this.SuspendLayout();
 			// 
-			// textBoxProjectPath
+			// comboboxProjectPath
 			// 
-			this.textBoxProjectPath.AllowDrop = true;
-			this.textBoxProjectPath.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+			this.comboboxProjectPath.AllowDrop = true;
+			this.comboboxProjectPath.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.textBoxProjectPath.Location = new System.Drawing.Point(12, 12);
-			this.textBoxProjectPath.Name = "textBoxProjectPath";
-			this.textBoxProjectPath.Size = new System.Drawing.Size(785, 20);
-			this.textBoxProjectPath.TabIndex = 1;
-			this.textBoxProjectPath.DragDrop += new System.Windows.Forms.DragEventHandler(this.textBoxProjectPath_DragDrop);
-			this.textBoxProjectPath.DragEnter += new System.Windows.Forms.DragEventHandler(this.textBoxProjectPath_DragEnter);
+			this.comboboxProjectPath.Location = new System.Drawing.Point(12, 12);
+			this.comboboxProjectPath.Name = "comboboxProjectPath";
+			this.comboboxProjectPath.Size = new System.Drawing.Size(785, 21);
+			this.comboboxProjectPath.TabIndex = 1;
+			this.comboboxProjectPath.DragDrop += new System.Windows.Forms.DragEventHandler(this.textBoxProjectPath_DragDrop);
+			this.comboboxProjectPath.DragEnter += new System.Windows.Forms.DragEventHandler(this.textBoxProjectPath_DragEnter);
 			// 
 			// buttonBrowseProject
 			// 
@@ -125,7 +127,7 @@
 			// buttonAccept
 			// 
 			this.buttonAccept.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-			this.buttonAccept.Location = new System.Drawing.Point(763, 231);
+			this.buttonAccept.Location = new System.Drawing.Point(763, 227);
 			this.buttonAccept.Name = "buttonAccept";
 			this.buttonAccept.Size = new System.Drawing.Size(75, 23);
 			this.buttonAccept.TabIndex = 8;
@@ -133,11 +135,24 @@
 			this.buttonAccept.UseVisualStyleBackColor = true;
 			this.buttonAccept.Click += new System.EventHandler(this.buttonAccept_Click);
 			// 
+			// labelAbout
+			// 
+			this.labelAbout.AutoSize = true;
+			this.labelAbout.Cursor = System.Windows.Forms.Cursors.Hand;
+			this.labelAbout.ForeColor = System.Drawing.Color.DarkGray;
+			this.labelAbout.Location = new System.Drawing.Point(809, 250);
+			this.labelAbout.Name = "labelAbout";
+			this.labelAbout.Size = new System.Drawing.Size(35, 13);
+			this.labelAbout.TabIndex = 9;
+			this.labelAbout.Text = "About";
+			this.labelAbout.Click += new System.EventHandler(this.labelAbout_Click);
+			// 
 			// MainForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(850, 266);
+			this.Controls.Add(this.labelAbout);
 			this.Controls.Add(this.buttonAccept);
 			this.Controls.Add(this.radioButtonConsole);
 			this.Controls.Add(this.radioButtonWPF);
@@ -145,10 +160,12 @@
 			this.Controls.Add(this.comboBoxSharedClasses);
 			this.Controls.Add(this.treeViewItemsToAdd);
 			this.Controls.Add(this.buttonBrowseProject);
-			this.Controls.Add(this.textBoxProjectPath);
+			this.Controls.Add(this.comboboxProjectPath);
+			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.Name = "MainForm";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
 			this.Text = "Form1";
+			this.Load += new System.EventHandler(this.MainForm_Load);
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -156,7 +173,7 @@
 
 		#endregion
 
-		private System.Windows.Forms.TextBox textBoxProjectPath;
+		private System.Windows.Forms.ComboBox comboboxProjectPath;
 		private System.Windows.Forms.Button buttonBrowseProject;
 		private System.Windows.Forms.TreeView treeViewItemsToAdd;
 		private System.Windows.Forms.ComboBox comboBoxSharedClasses;
@@ -164,6 +181,7 @@
 		private System.Windows.Forms.RadioButton radioButtonWPF;
 		private System.Windows.Forms.RadioButton radioButtonConsole;
 		private System.Windows.Forms.Button buttonAccept;
+		private System.Windows.Forms.Label labelAbout;
 	}
 }
 

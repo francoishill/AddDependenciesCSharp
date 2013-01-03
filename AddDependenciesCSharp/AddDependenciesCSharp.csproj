@@ -23,7 +23,7 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DefineConstants>TRACE;DEBUG;WPF,NOTUSEINTERCEPTOR</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
@@ -32,14 +32,14 @@
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
+    <DefineConstants>TRACE;WPF,NOTUSEINTERCEPTOR</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
     <DebugSymbols>true</DebugSymbols>
     <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DefineConstants>TRACE;DEBUG;WPF,NOTUSEINTERCEPTOR</DefineConstants>
     <DebugType>full</DebugType>
     <PlatformTarget>AnyCPU</PlatformTarget>
     <CodeAnalysisLogFile>bin\Debug\AddDependenciesCSharp.exe.CodeAnalysisLog.xml</CodeAnalysisLogFile>
@@ -55,7 +55,7 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|AnyCPU'">
     <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
+    <DefineConstants>TRACE;WPF,NOTUSEINTERCEPTOR</DefineConstants>
     <Optimize>true</Optimize>
     <DebugType>pdbonly</DebugType>
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -70,13 +70,17 @@
     <CodeAnalysisIgnoreBuiltInRules>false</CodeAnalysisIgnoreBuiltInRules>
     <CodeAnalysisFailOnMissingRules>false</CodeAnalysisFailOnMissingRules>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>app.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.Build" />
-    <Reference Include="Microsoft.Build.Engine" />
+    <Reference Include="Microsoft.Build.Framework" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Xaml" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -89,11 +93,18 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\..\SharedClasses\AboutWindow2.xaml.cs">
+      <Link>AboutWindow2.xaml.cs</Link>
+      <DependentUpon>AboutWindow2.xaml</DependentUpon>
+    </Compile>
     <Compile Include="..\..\SharedClasses\AppTypeIndependant.cs">
       <Link>AppTypeIndependant.cs</Link>
     </Compile>
     <Compile Include="..\..\SharedClasses\AutoUpdating.cs">
       <Link>AutoUpdating.cs</Link>
+    </Compile>
+    <Compile Include="..\..\SharedClasses\BuildingInterop.cs">
+      <Link>BuildingInterop.cs</Link>
     </Compile>
     <Compile Include="..\..\SharedClasses\CalledFromService.cs">
       <Link>CalledFromService.cs</Link>
@@ -110,6 +121,12 @@
     <Compile Include="..\..\SharedClasses\EncodeAndDecodeInterop.cs">
       <Link>EncodeAndDecodeInterop.cs</Link>
     </Compile>
+    <Compile Include="..\..\SharedClasses\EncryptionInterop.cs">
+      <Link>EncryptionInterop.cs</Link>
+    </Compile>
+    <Compile Include="..\..\SharedClasses\EventHandlers.cs">
+      <Link>EventHandlers.cs</Link>
+    </Compile>
     <Compile Include="..\..\SharedClasses\fastJSON.cs">
       <Link>fastJSON.cs</Link>
     </Compile>
@@ -119,6 +136,19 @@
     <Compile Include="..\..\SharedClasses\Generics.cs">
       <Link>Generics.cs</Link>
     </Compile>
+    <Compile Include="..\..\SharedClasses\Helpers.cs">
+      <Link>Helpers.cs</Link>
+    </Compile>
+    <Compile Include="..\..\SharedClasses\InputBoxWPF.xaml.cs">
+      <Link>InputBoxWPF.xaml.cs</Link>
+      <DependentUpon>InputBoxWPF.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="..\..\SharedClasses\LicensingInterop_Shared.cs">
+      <Link>LicensingInterop_Shared.cs</Link>
+    </Compile>
+    <Compile Include="..\..\SharedClasses\Logging.cs">
+      <Link>Logging.cs</Link>
+    </Compile>
     <Compile Include="..\..\SharedClasses\MiniDownloadBarForm.cs">
       <Link>MiniDownloadBarForm.cs</Link>
       <SubType>Form</SubType>
@@ -127,11 +157,29 @@
       <Link>MiniDownloadBarForm.designer.cs</Link>
       <DependentUpon>MiniDownloadBarForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="..\..\SharedClasses\NetworkInteropSimple.cs">
+      <Link>NetworkInteropSimple.cs</Link>
+    </Compile>
+    <Compile Include="..\..\SharedClasses\NsisInterop.cs">
+      <Link>NsisInterop.cs</Link>
+    </Compile>
+    <Compile Include="..\..\SharedClasses\OwnAppsInterop.cs">
+      <Link>OwnAppsInterop.cs</Link>
+    </Compile>
+    <Compile Include="..\..\SharedClasses\PhpInterop.cs">
+      <Link>PhpInterop.cs</Link>
+    </Compile>
     <Compile Include="..\..\SharedClasses\ProcessesInterop.cs">
       <Link>ProcessesInterop.cs</Link>
     </Compile>
+    <Compile Include="..\..\SharedClasses\PublishInterop.cs">
+      <Link>PublishInterop.cs</Link>
+    </Compile>
     <Compile Include="..\..\SharedClasses\ReflectionInterop.cs">
       <Link>ReflectionInterop.cs</Link>
+    </Compile>
+    <Compile Include="..\..\SharedClasses\RegexInterop.cs">
+      <Link>RegexInterop.cs</Link>
     </Compile>
     <Compile Include="..\..\SharedClasses\RegistryInterop.cs">
       <Link>RegistryInterop.cs</Link>
@@ -142,8 +190,14 @@
     <Compile Include="..\..\SharedClasses\SettingsSimple.cs">
       <Link>SettingsSimple.cs</Link>
     </Compile>
+    <Compile Include="..\..\SharedClasses\SharedClassesSettings.cs">
+      <Link>SharedClassesSettings.cs</Link>
+    </Compile>
     <Compile Include="..\..\SharedClasses\ShowNoCallbackNotificationInterop.cs">
       <Link>ShowNoCallbackNotificationInterop.cs</Link>
+    </Compile>
+    <Compile Include="..\..\SharedClasses\StandaloneUploaderInterop.cs">
+      <Link>StandaloneUploaderInterop.cs</Link>
     </Compile>
     <Compile Include="..\..\SharedClasses\StringExtensions.cs">
       <Link>StringExtensions.cs</Link>
@@ -158,6 +212,9 @@
       <Link>UnhandledExceptionsWindow.xaml.cs</Link>
       <DependentUpon>UnhandledExceptionsWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="..\..\SharedClasses\UploadingProtocolTypesEnum.cs">
+      <Link>UploadingProtocolTypesEnum.cs</Link>
+    </Compile>
     <Compile Include="..\..\SharedClasses\UserMessages.cs">
       <Link>UserMessages.cs</Link>
       <SubType>Form</SubType>
@@ -171,6 +228,9 @@
     </Compile>
     <Compile Include="..\..\SharedClasses\Win32Api.cs">
       <Link>Win32Api.cs</Link>
+    </Compile>
+    <Compile Include="..\..\SharedClasses\WPFdraggableCanvas.cs">
+      <Link>WPFdraggableCanvas.cs</Link>
     </Compile>
     <Compile Include="..\..\SharedClasses\WpfNotificationWindow.xaml.cs">
       <Link>WpfNotificationWindow.xaml.cs</Link>
@@ -218,6 +278,16 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Page Include="..\..\SharedClasses\AboutWindow2.xaml">
+      <Link>AboutWindow2.xaml</Link>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="..\..\SharedClasses\InputBoxWPF.xaml">
+      <Link>InputBoxWPF.xaml</Link>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="..\..\SharedClasses\UnhandledExceptionsWindow.xaml">
       <Link>UnhandledExceptionsWindow.xaml</Link>
       <Generator>MSBuild:Compile</Generator>
@@ -228,6 +298,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="app.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

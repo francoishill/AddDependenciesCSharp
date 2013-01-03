@@ -21,6 +21,34 @@ namespace AddDependenciesCSharp
 				comboBoxSharedClasses.Items.Add(file);
 		}
 
+		private void MainForm_Load(object sender, EventArgs e)
+		{
+			comboboxProjectPath.Items.Clear();
+
+			string rootDir = OwnAppsInterop.RootVSprojectsDir;
+
+			List<string> csprojPaths = new List<string>();
+			foreach (var appdir in Directory.GetDirectories(rootDir))
+			{
+				string err;
+				string solutionPath = OwnAppsInterop.GetSolutionPathFromApplicationName(Path.GetFileName(appdir), out err);
+				//We just ignore errors because it will be the folders we do not want to include anyways
+				if (solutionPath == null)
+					continue;
+
+				var csprojRelpathAndApptype = OwnAppsInterop.GetRelativePathToCsProjWithSameFilenameAsSolution(solutionPath, out err);
+				if (!csprojRelpathAndApptype.HasValue)
+					continue;
+				string csprojFullpath = Path.Combine(
+					Path.GetDirectoryName(solutionPath),
+					csprojRelpathAndApptype.Value.Key);
+
+				csprojPaths.Add(csprojFullpath);
+			}
+			foreach (var cs in csprojPaths)
+				comboboxProjectPath.Items.Add(cs);
+		}
+
 		private void textBoxProjectPath_DragEnter(object sender, DragEventArgs e)
 		{
 			// Check if the Dataformat of the data can be accepted
@@ -45,9 +73,9 @@ namespace AddDependenciesCSharp
 				UserMessages.ShowWarningMessage("File must be of type .csproj");
 			else
 			{
-				textBoxProjectPath.Text = FileList[0];
-				if (textBoxProjectPath.Text.StartsWith(@"C:\Francois\Dev\VSprojects"))
-					textBoxProjectPath.Text = textBoxProjectPath.Text.Replace(@"C:\Francois\Dev\VSprojects", Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments).TrimEnd('\\') + "\\" + @"Visual Studio 2010\Projects");
+				comboboxProjectPath.Text = FileList[0];
+				if (comboboxProjectPath.Text.StartsWith(@"C:\Francois\Dev\VSprojects"))
+					comboboxProjectPath.Text = comboboxProjectPath.Text.Replace(@"C:\Francois\Dev\VSprojects", Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments).TrimEnd('\\') + "\\" + @"Visual Studio 2010\Projects");
 			}
 		}
 
@@ -95,9 +123,9 @@ namespace AddDependenciesCSharp
 			if (comboBoxSharedClasses.Text.Length != 0 && UserMessages.Confirm("The current selected item is not added to the list, add it now?"))
 				AddComboboxItemToList();
 
-			if (string.IsNullOrWhiteSpace(textBoxProjectPath.Text))
+			if (string.IsNullOrWhiteSpace(comboboxProjectPath.Text))
 				UserMessages.ShowWarningMessage("Please select a project first.");
-			else if (!textBoxProjectPath.Text.EndsWith(".csproj", StringComparison.InvariantCultureIgnoreCase))
+			else if (!comboboxProjectPath.Text.EndsWith(".csproj", StringComparison.InvariantCultureIgnoreCase))
 				UserMessages.ShowWarningMessage("Please select a valid .csproj file.");
 			else if (comboBoxSharedClasses.Text.Length != 0)
 				UserMessages.ShowWarningMessage("Please add the item to the list first.");
@@ -109,8 +137,18 @@ namespace AddDependenciesCSharp
 				List<FullPathAndDisplayName> tmplist = new List<FullPathAndDisplayName>();
 				foreach (TreeNode node in treeViewItemsToAdd.Nodes)
 					tmplist.Add(node.Tag as FullPathAndDisplayName);
-				CSharpDependencies.EnsureCorrectFileDependancies(textBoxProjectPath.Text, tmplist.ToArray(), true);
+				CSharpDependencies.EnsureCorrectFileDependancies(comboboxProjectPath.Text, tmplist.ToArray(), true);
 			}
+		}
+
+		private void labelAbout_Click(object sender, EventArgs e)
+		{
+			AboutWindow2.ShowAboutWindow(new System.Collections.ObjectModel.ObservableCollection<DisplayItem>()
+			{
+				new DisplayItem("Author", "Francois Hill"),
+				new DisplayItem("Icon(s) obtained from", null)//"http://www.icons-land.com", "http://www.icons-land.com/vista-base-software-icons.php")
+
+			});
 		}
 	}
 }
