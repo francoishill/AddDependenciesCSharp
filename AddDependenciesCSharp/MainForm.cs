@@ -13,12 +13,17 @@ namespace AddDependenciesCSharp
 {
 	public partial class MainForm : Form
 	{
+		public static string presetCsProjFile = null;//This might have been set in the Program.cs file
+
 		public MainForm()
 		{
 			InitializeComponent();
 
 			foreach (FullPathAndDisplayName file in CSharpDependencies.GetSharedClasses())
 				comboBoxSharedClasses.Items.Add(file);
+
+			if (presetCsProjFile != null)
+				comboboxProjectPath.Text = presetCsProjFile;
 		}
 
 		private void MainForm_Load(object sender, EventArgs e)
