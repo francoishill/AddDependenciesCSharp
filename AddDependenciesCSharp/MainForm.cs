@@ -18,16 +18,24 @@ namespace AddDependenciesCSharp
 		public MainForm()
 		{
 			InitializeComponent();
+		}
+
+		private void MainForm_Load(object sender, EventArgs e)
+		{
+			//Moved code to MainForm_Show
+		}
+
+		private void MainForm_Shown(object sender, EventArgs e)
+		{
+			this.Refresh();
+			Application.DoEvents();
 
 			foreach (FullPathAndDisplayName file in CSharpDependencies.GetSharedClasses())
 				comboBoxSharedClasses.Items.Add(file);
 
 			if (presetCsProjFile != null)
 				comboboxProjectPath.Text = presetCsProjFile;
-		}
 
-		private void MainForm_Load(object sender, EventArgs e)
-		{
 			comboboxProjectPath.Items.Clear();
 
 			string rootDir = OwnAppsInterop.RootVSprojectsDir;
